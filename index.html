@@ -1,89 +1,151 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>System Console</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>System Access</title>
+
   <style>
-    body {
-      margin: 0;
-      background: black;
-      color: #00ff66;
-      font-family: monospace;
-      overflow: hidden;
-    }.terminal {
-  padding: 20px;
-  height: 100vh;
-  box-sizing: border-box;
-  white-space: pre-wrap;
-  font-size: 15px;
-  line-height: 1.5;
-  animation: flicker 0.08s infinite;
-}
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
 
-@keyframes flicker {
-  0% { opacity: 1; }
-  50% { opacity: 0.97; }
-  100% { opacity: 1; }
-}
+    body{
+      overflow:hidden;
+      background:black;
+      font-family:monospace;
+    }
 
-.warning {
-  position: absolute;
-  top: 15px;
-  right: 20px;
-  color: red;
-  font-size: 18px;
-  font-weight: bold;
-  animation: blink 0.7s infinite;
-}
+    .bg{
+      position:fixed;
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      top:0;
+      left:0;
+      z-index:-1;
+      filter:brightness(0.7);
+    }
 
-@keyframes blink {
-  50% { opacity: 0; }
-}
+    .overlay{
+      position:fixed;
+      width:100%;
+      height:100%;
+      background:rgba(0,0,0,0.35);
+      top:0;
+      left:0;
+    }
 
-  </style>
-</head>
-<body>
-  <div class="warning">ACCESSING MAINFRAME...</div>
-  <div class="terminal" id="terminal"></div>  <script>
-    const terminal = document.getElementById('terminal');
+    .warning{
+      position:absolute;
+      top:20px;
+      width:100%;
+      text-align:center;
+      color:red;
+      font-size:40px;
+      font-weight:bold;
+      animation:blink 0.7s infinite;
+      text-shadow:0 0 20px red;
+    }
 
-    const fakeLines = [
-      'Initializing secure connection...',
-      'Bypassing firewall...',
-      'Access granted.',
-      'Decrypting encrypted packets...',
-      'Injecting payload...',
-      'Fetching device information...',
-      'Uploading data to cloud node...',
-      'Scanning media files...',
-      'Compiling exploit modules...',
-      'Connecting to remote server...',
-      'Downloading secret files...',
-      'Executing root commands...',
-      'Disabling security layer...',
-      'Reading memory cache...',
-      'Syncing terminal access...',
-      'WARNING: Trace detected...',
-      'Re-routing through proxy...',
-      'Finalizing operation...',
-      'DONE ✓'
-    ];
-
-    let i = 0;
-
-    function addLine() {
-      const random = Math.floor(Math.random() * fakeLines.length);
-      terminal.innerHTML += '> ' + fakeLines[random] + '\n';
-      terminal.scrollTop = terminal.scrollHeight;
-      i++;
-
-      if (i < 250) {
-        setTimeout(addLine, 70);
-      } else {
-        terminal.innerHTML += '\n\nSYSTEM OVERRIDE COMPLETE 😈';
+    @keyframes blink{
+      50%{
+        opacity:0;
       }
     }
 
-    addLine();
-  </script></body>
+    .terminal{
+      position:absolute;
+      bottom:20px;
+      left:20px;
+      color:#00ff66;
+      font-size:18px;
+      width:90%;
+      height:40%;
+      overflow:hidden;
+      text-shadow:0 0 10px #00ff66;
+    }
+
+    .scan{
+      position:absolute;
+      width:100%;
+      height:4px;
+      background:rgba(0,255,0,0.5);
+      box-shadow:0 0 20px lime;
+      animation:scan 3s linear infinite;
+    }
+
+    @keyframes scan{
+      0%{
+        top:0;
+      }
+
+      100%{
+        top:100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- YOUR IMAGE -->
+  <img class="bg" src="https://ibb.co/zKp7Lrm">
+
+  <div class="overlay"></div>
+
+  <div class="warning">
+    SYSTEM HACKED
+  </div>
+
+  <div class="terminal" id="terminal"></div>
+
+  <div class="scan"></div>
+
+  <script>
+
+    const lines = [
+      "Connecting to secure server...",
+      "Access granted...",
+      "Decrypting device data...",
+      "Uploading files...",
+      "Firewall bypassed...",
+      "Tracking IP address...",
+      "Installing malware...",
+      "Extracting gallery...",
+      "Syncing contacts...",
+      "Device compromised...",
+      "Root access enabled...",
+      "Transfer complete..."
+    ];
+
+    const terminal = document.getElementById("terminal");
+
+    let i = 0;
+
+    function typeLine(){
+
+      const randomLine =
+      lines[Math.floor(Math.random()*lines.length)];
+
+      terminal.innerHTML +=
+      "> " + randomLine + "<br>";
+
+      terminal.scrollTop =
+      terminal.scrollHeight;
+
+      i++;
+
+      if(i < 200){
+        setTimeout(typeLine,80);
+      }
+    }
+
+    typeLine();
+
+  </script>
+
+</body>
 </html>
