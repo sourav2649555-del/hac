@@ -1,0 +1,89 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>System Console</title>
+  <style>
+    body {
+      margin: 0;
+      background: black;
+      color: #00ff66;
+      font-family: monospace;
+      overflow: hidden;
+    }.terminal {
+  padding: 20px;
+  height: 100vh;
+  box-sizing: border-box;
+  white-space: pre-wrap;
+  font-size: 15px;
+  line-height: 1.5;
+  animation: flicker 0.08s infinite;
+}
+
+@keyframes flicker {
+  0% { opacity: 1; }
+  50% { opacity: 0.97; }
+  100% { opacity: 1; }
+}
+
+.warning {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  color: red;
+  font-size: 18px;
+  font-weight: bold;
+  animation: blink 0.7s infinite;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+  </style>
+</head>
+<body>
+  <div class="warning">ACCESSING MAINFRAME...</div>
+  <div class="terminal" id="terminal"></div>  <script>
+    const terminal = document.getElementById('terminal');
+
+    const fakeLines = [
+      'Initializing secure connection...',
+      'Bypassing firewall...',
+      'Access granted.',
+      'Decrypting encrypted packets...',
+      'Injecting payload...',
+      'Fetching device information...',
+      'Uploading data to cloud node...',
+      'Scanning media files...',
+      'Compiling exploit modules...',
+      'Connecting to remote server...',
+      'Downloading secret files...',
+      'Executing root commands...',
+      'Disabling security layer...',
+      'Reading memory cache...',
+      'Syncing terminal access...',
+      'WARNING: Trace detected...',
+      'Re-routing through proxy...',
+      'Finalizing operation...',
+      'DONE ✓'
+    ];
+
+    let i = 0;
+
+    function addLine() {
+      const random = Math.floor(Math.random() * fakeLines.length);
+      terminal.innerHTML += '> ' + fakeLines[random] + '\n';
+      terminal.scrollTop = terminal.scrollHeight;
+      i++;
+
+      if (i < 250) {
+        setTimeout(addLine, 70);
+      } else {
+        terminal.innerHTML += '\n\nSYSTEM OVERRIDE COMPLETE 😈';
+      }
+    }
+
+    addLine();
+  </script></body>
+</html>
